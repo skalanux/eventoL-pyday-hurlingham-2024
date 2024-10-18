@@ -33,6 +33,36 @@ body {
     background-color: #222f54;
     color: #fff;
 }
+.product-box {
+    position: relative; /* El contenedor necesita una posición relativa para que los hijos puedan posicionarse dentro de él */
+    width: 300px; /* Ancho del contenedor */
+    height: 300px; /* Alto del contenedor */
+    overflow: hidden; /* Para evitar que el contenido se salga del contenedor */
+}
+
+.product-box svg,
+.product-box img,
+.product-box .svg-textura {
+    position: absolute; /* Coloca los elementos en posición absoluta para que se superpongan */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    height: 100%; /* Ajusta el alto al 100% del contenedor */
+    object-fit: cover; /* Escala las imágenes para cubrir el área del contenedor sin distorsionar la imagen */
+    z-index: 1; /* Asegura que todos los elementos estén en el mismo nivel, puedes ajustar los z-index si quieres controlar la superposición */
+}
+
+.product-box .svg-textura {
+    z-index: 2; /* Controla el orden de superposición de este elemento */
+}
+
+.product-box img.design {
+    z-index: 3; /* La imagen del diseño sobre los demás */
+}
+
+.product-box img.texture {
+    z-index: 4; /* La imagen de la textura estará sobre los otros elementos */
+}
 
 
 </style> 
@@ -338,7 +368,6 @@ body {
                     </br>
                     </br>
                 </h4>
-
             </div>
         </div>
 
@@ -387,13 +416,59 @@ body {
             </div>
         </div>
     {% endif %}
-
     <div class="card">
-        <div class="row" style="justify-content: center;">
-            <h2>Actividades</h2>
+        <div class="row pb-4" style="justify-content: center;">
+            <div class="col-12 text-center">
+                <h2 style="text-align: center">¡Apoyá el evento y llevate un recuerdo!</h2>
+            </div>
+            <div class="col-12 text-center">
+                <a href="https://pyday-hurlingham.flashcookie.com/" title="Ir a la tienda">
+                    <i class="fa fa-shopping-cart"></i>
+                    Ir a la tienda
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <a href="https://pyday-hurlingham.flashcookie.com/remera-dark/remera-unisex" target="flashcookie">
+                    <img src="https://drive.google.com/thumbnail?id=1ZKSb2bdEZxrjWTb8sPkhCVAFHB50hkye&sz=w1000" alt="Remera dark">
+                </a>                
+            </div>
+            <div class="col-md-3">
+                <a href="https://pyday-hurlingham.flashcookie.com/botella-pyday/botella-aluminio" target="flashcookie">
+                    <img src="https://drive.google.com/thumbnail?id=18KcqFT14gzCIbXGdK5UPZLClEmtSdG3v&sz=w1000" alt="Botella aluminio">
+                </a>                
+            </div>
+
+            <div class="col-md-3">
+                <a href="https://pyday-hurlingham.flashcookie.com/taza-pyday/taza" target="flashcookie">
+                    <img src="https://drive.google.com/thumbnail?id=1-15cSTT59ZukgsFtkapCkMEzC2uPjFeB&sz=w1000" alt="Taza">
+                </a>                
+            </div>
+            <div class="col-md-3">
+                <a href="https://pyday-hurlingham.flashcookie.com/remera-light/remera-unisex" target="flashcookie">
+                    <img src="https://drive.google.com/thumbnail?id=1Visu4g8wC3bWJU1DyMJ7nKfg93lyH91H&sz=w1000" alt="Remera light">
+                </a>                
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card">
+        <div class="row pb-3" style="justify-content: center;">
+            <div class="col-12 text-center">
+                <h2>Actividades</h2> 
+            </div>
+            <div class="col-12 text-center">
+                <a href="https://eventos.python.org.ar/events/pyday-hurlingham-2024/schedule" title="Ver cronograma">
+                    <i class="fa fa-calendar"></i>
+
+                    Ver cronograma
+                </a>
+            </div>
         </div>
         <div id="activityCarousel" class="carousel slide" data-ride="carousel">
-
             <!-- Slides -->
             <div class="carousel-inner">
                 {% if activities and event.schedule_confirmed %}
