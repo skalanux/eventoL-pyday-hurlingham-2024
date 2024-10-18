@@ -417,6 +417,64 @@ body {
         </div>
     {% endif %}
     <div class="card">
+        <div class="row pb-3" style="justify-content: center;">
+            <div class="col-12 text-center">
+                <h2>Actividades</h2> 
+            </div>
+            <div class="col-12 text-center">
+                <a href="https://eventos.python.org.ar/events/pyday-hurlingham-2024/schedule" title="Ver cronograma">
+                    <i class="fa fa-calendar"></i>
+
+                    Ver cronograma
+                </a>
+            </div>
+        </div>
+        <div id="activityCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Slides -->
+            <div class="carousel-inner">
+                {% if activities and event.schedule_confirmed %}
+                {% for activity in activities %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row">
+                        <div class="col-sm-3" style="padding-top: 30px; min-height: 400px;">
+                            <a href='{% url "activity_detail" event.event_slug activity.id %}'>
+                                {% if activity.image and activity.cropping %}
+                                <img src="{% cropped_thumbnail activity "cropping" %}" alt="{{ activity.title }}" width="100%" heigth="100%" style="border: 3px solid #214760;">
+                                {% else %}
+                                <img src="{% static "manager/img/no-image.png" %}" width="100%" heigth="100%">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                            <a style='text-decoration: none;' href='{% url "activity_detail" event.event_slug activity.id %}'>
+                                <h2>{{ activity.title }}</h2>
+                            </a>
+                            <p><strong>{{ activity.abstract }}</strong></p>
+                            <p>{{ activity.long_description|truncatechars:900 }}</p>
+                            <p><strong>{% trans 'Speakers' %}:</strong> {{ activity.speakers_names|title }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-sm-6">
+                    <h4>Muy pronto!</h4>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#activityCarousel" role="button" data-slide="prev" style="justify-content: flex-start;">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: gray; border-radius: 50%; border: solid gray 8px; padding: 12px;"></span>
+                <span class="sr-only">Previa</span>
+            </a>
+            <a class="carousel-control-next" href="#activityCarousel" role="button" data-slide="next" style="justify-content: flex-end;">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: gray; border-radius: 50%; border: solid gray 8px; padding: 12px;"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
+        </div>
+    </div>
+    <div class="card">
         <div class="row pb-4" style="justify-content: center;">
             <div class="col-12 text-center">
                 <h2 style="text-align: center">¡Apoyá el evento y llevate un recuerdo!</h2>
@@ -454,64 +512,6 @@ body {
         </div>
 
 
-    </div>
-    <div class="card">
-        <div class="row pb-3" style="justify-content: center;">
-            <div class="col-12 text-center">
-                <h2>Actividades</h2> 
-            </div>
-            <div class="col-12 text-center">
-                <a href="https://eventos.python.org.ar/events/pyday-hurlingham-2024/schedule" title="Ver cronograma">
-                    <i class="fa fa-calendar"></i>
-
-                    Ver cronograma
-                </a>
-            </div>
-        </div>
-        <div id="activityCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Slides -->
-            <div class="carousel-inner">
-                {% if activities and event.schedule_confirmed %}
-                {% for activity in activities %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <div class="row">
-                        <div class="col-sm-3" style="padding-top: 30px; min-height: 400px;">
-                            <a href='{% url "activity_detail" event.event_slug activity.id %}'>
-                                {% if activity.image and activity.cropping %}
-                                <img src="{% cropped_thumbnail activity "cropping" %}" alt="{{ activity.title }}" width="100%" heigth="100%">
-                                {% else %}
-                                <img src="{% static "manager/img/no-image.png" %}" width="100%" heigth="100%">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="col-sm-9">
-                            <a style='text-decoration: none;' href='{% url "activity_detail" event.event_slug activity.id %}'>
-                                <h2>{{ activity.title }}</h2>
-                            </a>
-                            <p><strong>{{ activity.abstract }}</strong></p>
-                            <p>{{ activity.long_description|truncatechars:900 }}</p>
-                            <p><strong>{% trans 'Speakers' %}:</strong> {{ activity.speakers_names|title }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <div class="col-sm-6">
-                    <h4>Muy pronto!</h4>
-                </div>
-                {% endif %}
-            </div>
-
-            <!-- Controls -->
-            <a class="carousel-control-prev" href="#activityCarousel" role="button" data-slide="prev" style="justify-content: flex-start;">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: gray; border-radius: 50%; border: solid gray 8px; padding: 12px;"></span>
-                <span class="sr-only">Previa</span>
-            </a>
-            <a class="carousel-control-next" href="#activityCarousel" role="button" data-slide="next" style="justify-content: flex-end;">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: gray; border-radius: 50%; border: solid gray 8px; padding: 12px;"></span>
-                <span class="sr-only">Siguiente</span>
-            </a>
-        </div>
     </div>
 
     <div class="card card-pyday-dark">
