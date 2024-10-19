@@ -6,6 +6,21 @@
 {% load cropping %}
 {% load filters %}
 {% block other-head %}
+{% if event is not None %}
+    <meta property="og:title"          content="PyDay Hurlingham 2024" />
+    <meta property="og:article:author" content="PyAr" />
+    <meta property="og:description"    content="El PyDay es un encuentro con charlas y actividades relacionadas con el lenguaje de programaci&oacute;n Python y tecnolog&iacute;as afines" />
+    <meta property="og:image"          content="https://eventos.python.org.ar/media/images_thumbnails/PyDayHurlingham_v4_stars_cpEUh5v.png" />
+    <meta property="og:image:alt"      content="Logo de Python en azul y naranja sobre un borde azul oscuro con 3 estrellas con el texto PyDay Hurlingham 2024" />
+    <meta property="og:locale"         content="es_AR" />
+    <meta property="og:site_name"      content="PyDay Hurlingham 2024" />
+    <meta property="og:type"           content="website" />
+    <meta property="og:url"            content="https://eventos.python.org.ar/events/pyday-hurlingham-2024/" />
+    <meta name="twitter:title"         content="PyDay Hurlingham 2024" />
+    <meta name="twitter:description"   content="El PyDay es un encuentro con charlas y actividades relacionadas con el lenguaje de programaci&oacute;n Python y tecnolog&iacute;as afines" />
+    <meta name="twitter:image"         content="https://eventos.python.org.ar/media/images_thumbnails/PyDayHurlingham_v4_stars_cpEUh5v.png" />
+    <meta name="twitter:card"          content="summary_large_image" />
+{% endif %}
 <style>
 body {
     background: #222f54;
